@@ -73,11 +73,11 @@
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center glow-box">
                 <i class="fa-solid fa-hourglass-start text-white text-lg"></i>
             </div>
-            <span class="font-bold text-xl tracking-wider bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">COSMIC DESTINY</span>
+            <span class="font-bold text-xl tracking-wider bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">PROJECT PHOENIX</span>
         </div>
         <div class="flex items-center space-x-2 text-xs sm:text-sm font-medium px-4 py-2 rounded-full glass-card text-purple-200">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>Target: Feb 6, 2027</span>
+            <span>Target: Nov 7, 2027</span>
         </div>
     </header>
 
@@ -87,7 +87,7 @@
         <!-- Hero Title Section -->
         <div class="text-center mb-12">
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 glow-text">
-                Journey to <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">February 6, 2027</span>
+                Journey to <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">November 7, 2027</span>
             </h1>
             <p class="text-purple-300/80 text-base sm:text-xl max-w-2xl mx-auto font-light">
                 The countdown is active. Time is ticking closer to the moment of revelation. Prepare yourself for what lies ahead.
@@ -119,19 +119,68 @@
         </div>
 
         <!-- Progress Bar Section -->
-        <div class="w-full max-w-4xl glass-card rounded-2xl p-6 mb-12">
-            <div class="flex justify-between items-center mb-3">
-                <span class="text-sm font-medium text-purple-200 flex items-center gap-2">
-                    <i class="fa-solid fa-chart-line text-purple-400"></i> Mission Progress
-                </span>
-                <span id="progress-percentage" class="text-sm font-bold text-purple-400">0.0%</span>
+    <div class="w-full max-w-4xl glass-card rounded-2xl p-6 mb-12">
+        <div class="flex justify-between items-center mb-3">
+            <span class="text-sm font-medium text-purple-200 flex items-center gap-2">
+                <i class="fa-solid fa-chart-line text-purple-400"></i> Mission Progress
+            </span>
+            <span id="progress-percentage" class="text-sm font-bold text-purple-400">0.0%</span>
+        </div>
+        <div class="w-full bg-purple-950/60 rounded-full h-3 overflow-hidden p-0.5 border border-purple-500/20">
+            <div id="progress-bar" class="bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Mission Control Telemetry Terminal Section -->
+    <div class="w-full max-w-4xl glass-card rounded-3xl p-6 sm:p-8 mb-12 border border-purple-500/30">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 mb-4 border-b border-purple-500/20 gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                <h3 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-terminal text-purple-400"></i> Mission Control Telemetry Console
+                </h3>
             </div>
-            <div class="w-full bg-purple-950/60 rounded-full h-3 overflow-hidden p-0.5 border border-purple-500/20">
-                <div id="progress-bar" class="bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+            <div class="flex items-center gap-2 text-xs font-mono text-purple-300 bg-purple-950/80 px-3 py-1.5 rounded-lg border border-purple-500/20">
+                <span id="telemetry-status-badge" class="text-emerald-400 font-bold">● NOMINAL</span>
+                <span>|</span>
+                <span id="live-utc-clock">UTC 00:00:00</span>
             </div>
         </div>
 
-        <!-- Secret Reveal Section -->
+        <!-- Telemetry Data Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-purple-950/40 rounded-xl p-3 border border-purple-500/10">
+                <div class="text-xs text-purple-400 uppercase font-semibold mb-1">Orbital Velocity</div>
+                <div id="telemetry-velocity" class="text-lg font-mono font-bold text-white">28,142 <span class="text-xs font-normal text-purple-300">km/h</span></div>
+            </div>
+            <div class="bg-purple-950/40 rounded-xl p-3 border border-purple-500/10">
+                <div class="text-xs text-purple-400 uppercase font-semibold mb-1">Signal Latency</div>
+                <div id="telemetry-latency" class="text-lg font-mono font-bold text-white">42.8 <span class="text-xs font-normal text-purple-300">ms</span></div>
+            </div>
+            <div class="bg-purple-950/40 rounded-xl p-3 border border-purple-500/10">
+                <div class="text-xs text-purple-400 uppercase font-semibold mb-1">Thermal Bus</div>
+                <div id="telemetry-thermal" class="text-lg font-mono font-bold text-emerald-400">21.4°C</div>
+            </div>
+            <div class="bg-purple-950/40 rounded-xl p-3 border border-purple-500/10">
+                <div class="text-xs text-purple-400 uppercase font-semibold mb-1">Solar Radiation</div>
+                <div id="telemetry-radiation" class="text-lg font-mono font-bold text-cyan-400">0.14 <span class="text-xs font-normal text-purple-300">Sv/h</span></div>
+            </div>
+        </div>
+
+        <!-- Live Terminal Log Stream -->
+        <div class="bg-[#020008] rounded-2xl p-4 font-mono text-xs text-purple-300 h-36 overflow-y-auto border border-purple-500/20 shadow-inner flex flex-col justify-between" id="terminal-log-container">
+            <div id="terminal-logs" class="space-y-1.5">
+                <div class="text-purple-400/60">[00:00:00] SYSTEM INITIALIZED: Project Phoenix Telemetry Link Established.</div>
+                <div class="text-purple-300">[00:00:01] Ground station handshake verified with Deep Space Network.</div>
+            </div>
+            <div class="mt-2 pt-2 border-t border-purple-950 flex items-center justify-between text-[11px] text-purple-400/70">
+                <span>Influenced by: Orbital mechanics, real-time telemetry &amp; atmospheric sensors</span>
+                <span class="animate-pulse">● LIVE STREAM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secret Reveal Section -->
         <div class="w-full max-w-4xl glass-card rounded-3xl p-8 sm:p-10 relative overflow-hidden transition-all duration-500" id="reveal-card">
             <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-purple-600/10 rounded-full blur-2xl pointer-events-none"></div>
             
@@ -143,7 +192,7 @@
                     <div>
                         <h3 id="section-title" class="text-2xl font-bold text-white mb-1">Secret Reveal Section</h3>
                         <p id="section-subtitle" class="text-purple-300/70 text-sm sm:text-base">
-                            This classified content is locked until February 6, 2027, 00:00:00.
+                            This classified content is locked until November 7, 2027, 00:00:00.
                         </p>
                     </div>
                 </div>
@@ -162,7 +211,7 @@
                     <div>
                         <h4 class="text-2xl font-bold text-white mb-2">🎉 Access Granted! Welcome to the Future!</h4>
                         <p class="text-purple-200 text-sm sm:text-base leading-relaxed">
-                            The wait is finally over. February 6, 2027 has arrived. Thank you for staying patient through the cosmic journey. Your exclusive portal is now fully unlocked and operational!
+                            The wait is finally over. November 7, 2027 has arrived. Thank you for staying patient through the cosmic journey. Your exclusive portal is now fully unlocked and operational!
                         </p>
                     </div>
                 </div>
@@ -173,19 +222,67 @@
 
     <!-- Footer -->
     <footer class="w-full py-6 text-center text-xs sm:text-sm text-purple-400/60 z-10 border-t border-purple-950/60">
-        <p>&copy; 2027 Cosmic Destiny. Built with precision and elegance.</p>
+        <p>&copy; 2027 Project Phoenix. Built with precision and elegance.</p>
     </footer>
 
     <!-- JavaScript Logic -->
     <script>
-        // Target date: February 6, 2027 00:00:00
-        const targetDate = new Date('2027-02-06T00:00:00').getTime();
+        // Target date: November 7, 2027 00:00:00
+        const targetDate = new Date('2027-11-07T00:00:00').getTime();
         
         // Define a start reference for the progress bar (e.g., Jan 1, 2026 or website creation point)
-        // Let's use Jan 1, 2026 as the baseline start for smooth progress calculation
         const startDate = new Date('2026-01-01T00:00:00').getTime();
 
         let unlockedTriggered = false;
+
+        // Telemetry simulated log messages influenced by system parameters
+        const telemetryEvents = [
+            "Telemetry check: Gyroscope stabilization nominal across 3 axes.",
+            "Orbital mechanics: Calculating orbital perturbation correction vectors...",
+            "Signal latency verified via Deep Space Network relay station Alpha.",
+            "Thermal bus stability confirmed within nominal operational limits.",
+            "Solar radiation flux stable. Solar panel efficiency at 98.4%.",
+            "Ephemeris data updated successfully for trajectory alignment.",
+            "Payload status: Secure. Life support matrix idling efficiently."
+        ];
+
+        function updateTelemetryConsole() {
+            // Update UTC clock
+            const nowUTC = new Date();
+            document.getElementById('live-utc-clock').innerText = "UTC " + nowUTC.toISOString().slice(11, 19);
+
+            // Slightly fluctuate telemetry stats to simulate active space environment
+            const velocity = (28140 + Math.random() * 15 - 7.5).toFixed(1);
+            const latency = (42 + Math.random() * 5 - 2.5).toFixed(1);
+            const thermal = (21.0 + Math.random() * 0.8).toFixed(1);
+            const radiation = (0.13 + Math.random() * 0.03).toFixed(2);
+
+            document.getElementById('telemetry-velocity').innerHTML = `${velocity} <span class="text-xs font-normal text-purple-300">km/h</span>`;
+            document.getElementById('telemetry-latency').innerHTML = `${latency} <span class="text-xs font-normal text-purple-300">ms</span>`;
+            document.getElementById('telemetry-thermal').innerText = `${thermal}°C`;
+            document.getElementById('telemetry-radiation').innerHTML = `${radiation} <span class="text-xs font-normal text-purple-300">Sv/h</span>`;
+
+            // Randomly push telemetry log entries
+            if (Math.random() < 0.35) {
+                const logsContainer = document.getElementById('terminal-logs');
+                const randomMsg = telemetryEvents[Math.floor(Math.random() * telemetryEvents.length)];
+                const timeStr = nowUTC.toISOString().slice(11, 19);
+                
+                const logDiv = document.createElement('div');
+                logDiv.className = "text-purple-300/90";
+                logDiv.innerHTML = `<span class="text-purple-500">[${timeStr}]</span> ${randomMsg}`;
+                
+                logsContainer.appendChild(logDiv);
+                
+                // Keep max 8 logs in terminal view
+                if (logsContainer.children.length > 8) {
+                    logsContainer.removeChild(logsContainer.children[0]);
+                }
+
+                const terminalBox = document.getElementById('terminal-log-container');
+                terminalBox.scrollTop = terminalBox.scrollHeight;
+            }
+        }
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -267,7 +364,7 @@
                 triggerUnlock();
             } else {
                 // Show gentle alert message via modal/stylish notification instead of browser alert
-                showNotification("Still locked! The countdown concludes on February 6, 2027.");
+                showNotification("Still locked! The countdown concludes on November 7, 2027.");
             }
         }
 
@@ -286,7 +383,9 @@
 
         // Initialize countdown loop
         setInterval(updateCountdown, 1000);
+        setInterval(updateTelemetryConsole, 3000);
         updateCountdown();
+        updateTelemetryConsole();
     </script>
 </body>
 </html>
