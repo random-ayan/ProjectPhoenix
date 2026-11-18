@@ -1,124 +1,50 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Phoenix - Under Maintenance</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            max-width: 650px;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #58a6ff;
-            margin-bottom: 0.5rem;
-        }
-        p {
-            font-size: 1.1rem;
-            color: #8b949e;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-        .status-badge {
-            display: inline-block;
-            background-color: rgba(88, 166, 255, 0.1);
-            color: #58a6ff;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(88, 166, 255, 0.3);
-            margin-bottom: 1.5rem;
-        }
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .time-box {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            padding: 1rem;
-            border-radius: 8px;
-            min-width: 70px;
-        }
-        .time-box span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #58a6ff;
-        }
-        .time-box label {
-            font-size: 0.8rem;
-            color: #8b949e;
-            text-transform: uppercase;
-            margin-top: 0.3rem;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="status-badge">System Upgrade in Progress</div>
-        <h1>Project Phoenix</h1>
-        <p>What? Gates are closed.</p>
-        
-        <div class="countdown">
-            <div class="time-box">
-                <span id="days">00</span>
-                <label>Days</label>
-            </div>
-            <div class="time-box">
-                <span id="hours">00</span>
-                <label>Hours</label>
-            </div>
-            <div class="time-box">
-                <span id="minutes">00</span>
-                <label>Minutes</label>
-            </div>
-            <div class="time-box">
-                <span id="seconds">00</span>
-                <label>Seconds</label>
-            </div>
-        </div>
+    <!-- তোমার ওয়েবসাইটের টাইমার বা অন্যান্য ডিজাইন এখানে থাকবে -->
+    <div class="countdown">
+        <span id="days">00</span> Days
     </div>
 
+    <!-- HTML ফাইলের একদম শেষ পর্যায়ে (</body> ট্যাগের ঠিক ওপরে) এই স্ক্রিপ্টটি বসাতে হবে -->
     <script>
-        const targetDate = new Date().getTime() + (5 * 24 * 60 * 60 * 1000);
-
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.querySelector(".countdown").innerHTML = "<p>খুব শীঘ্রই সাইট লাইভ হচ্ছে!</p>";
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.nodeName === 'IMG') {
+                e.preventDefault();
+                alert('Any image on this page is protected by copyright. Please do not download or use it without permission.');
             }
-        }, 1000);
-    </script>
+        });
 
+        const targetDate = new Date("December 31, 2026 23:59:59").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft < 0) {
+                if (document.getElementById("days")) document.getElementById("days").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            if (document.getElementById("days")) document.getElementById("days").innerText = String(days).padStart(2, '0');
+            if (document.getElementById("hours")) document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            if (document.getElementById("minutes")) document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            if (document.getElementById("seconds")) document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>

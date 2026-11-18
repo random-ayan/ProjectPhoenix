@@ -1,12 +1,11 @@
 document.addEventListener('contextmenu', function(e) {
     if (e.target.nodeName === 'IMG') {
         e.preventDefault();
-        alert('Any image on this page is protected by copyright. Please do not download or use it without permission.'  );
+        alert('Any image on this page is protected by copyright. Please do not download or use it without permission.');
     }
 });
 
-// তোমার কাঙ্ক্ষিত লক্ষ্য বা মেইনটেন্যান্স শেষ হওয়ার সঠিক তারিখ ও সময় এখানে সেট করো
-// ফরম্যাট: "Month Day, Year HH:MM:SS" (যেমন: December 31, 2026 23:59:59)
+// তোমার কাঙ্ক্ষিত লক্ষ্য বা মেইনটেন্যান্স শেষ হওয়ার সঠিক তারিখ ও সময় এখানে সেট করো
 const targetDate = new Date("December 31, 2026 23:59:59").getTime();
 
 function updateCountdown() {
@@ -15,7 +14,7 @@ function updateCountdown() {
 
     if (timeLeft < 0) {
         document.getElementById("days").innerText = "00";
-        document.ion = "Time's up!";
+        // যদি অন্য কোনো আইডি থাকে সেখানেও 00 বসাতে পারো
         return;
     }
 
@@ -24,9 +23,11 @@ function updateCountdown() {
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-    // এইচটিএমএল আইডিতে মানগুলো বসানো
-    document.getElementById("days").innerText = String(days).padStart(2, '0');
-    // যদি তোমার আওয়ার, মিনিট ও সেকেন্ডের আলাদা id থাকে সেগুলোর কোড এখানে যোগ করতে পারো
+    // HTML-এর আইডিগুলোতে মানগুলো বসানো (আইডিগুলো ঠিক থাকতে হবে)
+    if (document.getElementById("days")) document.getElementById("days").innerText = String(days).padStart(2, '0');
+    if (document.getElementById("hours")) document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    if (document.getElementById("minutes")) document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    if (document.getElementById("seconds")) document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
 }
 
 // প্রতি সেকেন্ডে টাইমার আপডেট হবে
